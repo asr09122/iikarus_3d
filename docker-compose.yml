@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  furniture-recommender:
+    build: .
+    ports:
+      - "10000:10000"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_INDEX=${PINECONE_INDEX}
+      - PINECONE_REGION=${PINECONE_REGION}
+      - DATABASE_URL=${DATABASE_URL}
+      - EMBED_MODEL=${EMBED_MODEL}
+      - HF_TOKEN=${HF_TOKEN}
+      - IKARUS_SPACE=${IKARUS_SPACE}
+    restart: unless-stopped
