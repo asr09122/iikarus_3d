@@ -27,6 +27,10 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Furniture Recommendation API", version="3.1.0")
 add_cors(app)
 
+# Force port binding for Render
+port = int(os.environ.get("PORT", 10000))
+print(f"🚀 Starting server on port {port}")
+
 # ---------------------------------------------------------
 # 🔐 LLM + spaCy Setup (for keyword extraction + creative blurbs)
 # ---------------------------------------------------------
@@ -181,4 +185,5 @@ if __name__ == "__main__":
     import os
 
     port = int(os.environ.get("PORT", 10000))
+    print(f"🔧 Running in __main__ mode on port {port}")
     uvicorn.run("app.main:app", host="0.0.0.0", port=port, log_level="info")
